@@ -12,6 +12,7 @@ const connection = mysql.createConnection({
 
 connection.connect((err) => {
   if (err) {
+    console.log(err);
     console.log('error connecting mysql')
   } else {
     console.log('successfully connect to mysql')
