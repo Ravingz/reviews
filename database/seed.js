@@ -24,7 +24,7 @@ const seedDatabase = () => {
     const reataurantId = faker.random.number({'min': 1,'max': 100});
     // console.log(userCity);
     //STR_TO_DATE("August 10 2017", "%M %d %Y");
-    const queryString = `INSERT INTO reviews (rating, comment, date, username, usercity, avatar, restaurant_id) VALUES ("${rating}", "${comment}", STR_TO_DATE("${date}", "%m/%d/%Y"), "${username}", "${userCity}", "${avatar}", ${reataurantId});`
+    const queryString = `INSERT INTO reviews (rating, comment, date, username, usercity, avatar, restaurant_id) VALUES ("${rating}", "${comment}", "${date}", "${username}", "${userCity}", "${avatar}", ${reataurantId});`
     db.query(queryString);
   }
   console.log('seeded the database!')
