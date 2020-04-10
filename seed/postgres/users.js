@@ -4,6 +4,7 @@
   const createCsvWriter = require('csv-writer').createObjectCsvWriter;
   const faker = require('faker');
   const cliProgress = require('cli-progress');
+//   const async = require ('')
   
   const writer = createCsvWriter({
       path: '../../users.csv',
@@ -40,7 +41,7 @@
           const users = createUsers();
           writer.writeRecords(users)
               .then(() => {
-                  bar1.increment(1)
+                  bar1.increment(.001)
                   seeder()
               })
       total++;

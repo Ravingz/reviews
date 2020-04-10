@@ -9,12 +9,12 @@
       path: '../../restaurants.csv',
       header: [
           {id: 'restaurant_id', title: 'restaurant_id'},
-          {id: 'restaurantName', title: 'restaurantName'},
-
+          {id: 'restaurantName', title: 'restaurantName'}
       ]
   });
+
   let totalRestaurants = 0;
-  let count = 100;
+  let count = 1000;
   let total = 0;
   
   const bar1 = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
@@ -33,11 +33,11 @@
   }
   
   const seeder = () => {
-      if (total < 1000) {
+      if (total < 10000) {
           const users = createRestaurant();
           writer.writeRecords(users)
               .then(() => {
-                  bar1.increment(.000001)
+                  bar1.increment(.01)
                   seeder()
               })
       total++;
