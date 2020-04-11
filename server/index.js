@@ -31,13 +31,13 @@ app.get('/api/restaurant/:id', (req, res) => {
       console.log('error calling db.getRecentReviews')
     } else {
       console.log(result);
-      res.send(result[0].name);
+      res.send(result.rows[0].name);
     }
   })
   
 });
 
-app.get('/api/restaurants/:id/reviews', (req, res) => {
+app.get('/api/restaurant/:id/reviews', (req, res) => {
   console.log('handleing get request for reviews by restaurant', req.params)
   db.getReviewsByRestaurant(req.params.id, (err, reviews) => {
     if (err) {
