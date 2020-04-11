@@ -1,22 +1,23 @@
-const mysql = require('mysql');
+const { Pool, Client } = require('pg')
+const connectionString = 'postgressql://austincapaviella:@localhost:5432/austincapaviella'
 
-
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'wonder4'
-});
-
-
-
-connection.connect((err) => {
-  if (err) {
-    console.log(err);
-    console.log('error connecting mysql')
-  } else {
-    console.log('successfully connect to mysql')
-  }
+const pool = new Pool({
+  connectionString: connectionString
 })
 
-module.exports =  connection;
+// pool.query('SELECT * from reviews where restaurant_id = 4332', (err, res) => {
+//   console.log(err, res)
+// })
+
+// const client = new Client({
+//   connectionString: connectionString
+// })
+
+// client.connect()
+
+// client.query('SELECT * from reviews where restaurant_id = 4332', (err, res) => {
+//   console.log(err, res)
+//   client.end()
+// })
+
+module.exports =  pool;
