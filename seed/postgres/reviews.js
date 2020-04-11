@@ -14,7 +14,7 @@ const seeder = () => {
 // for (var x = 0; x < 1; x++){
     writer.pipe(fs.createWriteStream(`reviewsTest5+.csv`));
     for (let i = 0; i < 10000000; i++) {
-        const restaurant_id = faker.random.number({min:0, max:10000000});
+        const restaurant_id = faker.random.number({min:0, max:9999999});
         const review_id = i;
         const rating = faker.random.number({min:1, max:5});
         const comment = faker.lorem.sentences();
@@ -30,7 +30,7 @@ const seeder = () => {
             restaurant_id: restaurant_id  
         })
         totalRestaurants++;
-        bar1.increment(.000002);
+        bar1.increment(.00001);
     }
     
     bar1.stop();
