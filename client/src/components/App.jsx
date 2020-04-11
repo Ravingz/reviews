@@ -18,7 +18,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurant: Math.floor(Math.random() * 100) + 1,
+      restaurant: Math.floor(Math.random() * 100000) + 1,
       reviews: []
     }
   }
