@@ -80,14 +80,14 @@ class Form extends React.Component {
   handlePost() {
     console.log('calling handlePost from Form component')
     const faker = require('faker');
-    let date = new Date();
+    let date = new Date().toString();
+    date = date.replace("Pacific Daylight Time", "PDT");
     let review = {
       rating: this.props.rating,
       comment: this.state.comment,
-      username: faker.internet.userName(),
-      date: date.toLocaleDateString(),
-      usercity: faker.fake('{{address.city}}, {{address.state}}'),
-      avatar: faker.image.avatar(),
+      createdAt: date,
+      updatedAt: date,
+      user_id: faker.random.number({min:0, max:10000000}),
       restaurant_id: this.props.restaurant
     }
     this.props.handleNewReview(review);

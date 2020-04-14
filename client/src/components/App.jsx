@@ -4,6 +4,8 @@ import $ from 'jquery';
 import SetRating from './SetRating.jsx';
 import styled from 'styled-components';
 
+var colors = require('colors');
+
 // import Header from '../styles.jsx';
 
 
@@ -18,7 +20,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurant: Math.floor(Math.random() * 100000) + 1,
+      restaurant: 414432,
+      //Math.floor(Math.random() * 100000) + 1,
       reviews: []
     }
   }
@@ -37,7 +40,6 @@ class App extends React.Component {
   //   })
   // }
 
-
   getReviewsByRestaurant(id) {
     $.ajax({
       method: 'GET',
@@ -46,7 +48,7 @@ class App extends React.Component {
       error: (err) => (console.log('error from get request: ', err))
     })
   }
-
+  
   postReview(review) {
     $.ajax({
       method: 'POST',
