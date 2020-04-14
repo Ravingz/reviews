@@ -6,3 +6,9 @@ node_modules
 
 ## csv ##
 *.csv
+
+## pem ##
+*.pem
+
+## log ##
+*.log
