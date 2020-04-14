@@ -1,4 +1,7 @@
 const db = require('../database')
+var colors = require('colors');
+
+var count = 10000003;
 
 const getRecentReviews = (callback) => {
   //get most recent 15 reviews
@@ -20,7 +23,6 @@ const getRestaurantName = (id, callback) => {
     if (err) {
       console.log('error getting restaurant name from database', err)
     } else {
-      // console.log(result);
       callback(null, result);
     }
   })
@@ -38,15 +40,15 @@ const getReviewsByRestaurant = (id, callback) => {
   });
 }
 
-
 const insertReview = (review, callback) => {
-  let queryString = `INSERT INTO reviews(rating, comment, date, username, usercity, avatar, restaurant_id) 
-  VALUES(${review.rating}, '${review.comment}', STR_TO_DATE("${review.date}", "%m/%d/%Y"), '${review.username}', '${review.usercity}', '${review.avatar}', '${review.restaurant_id}')`;
+  let review_id = count;
+  count++;
+  console.log((review.createdAt).green);
+  let queryString = `INSERT INTO reviews(review_id, rating, comment, createdat, updatedat, user_id, restaurant_id)  VALUES(${review_id}, ${review.rating}, '${review.comment}', '${review.createdAt}', '${review.updatedAt}', ${review.user_id}, ${review.restaurant_id})`;
   db.query(queryString, (err, results) => {
     if (err) {
       console.log('error inserting review', err)
     } else {
-      // console.log(results);
       callback(null, results);
     }
   })
