@@ -1,9 +1,11 @@
 const db = require('../database')
+var colors = require('colors');
 
+var count = 10000003;
 
 const getRecentReviews = (callback) => {
   //get most recent 15 reviews
-  let queryString = 'SELECT * FROM reviews ORDER BY date DESC LIMIT 15';
+  let queryString = 'SELECT * FROM reviews ORDER BY createdAt DESC LIMIT 15';
   db.query(queryString, (err, results) => {
     if (err) {
       console.log('error getting recent reviews from database', err)
@@ -16,12 +18,11 @@ const getRecentReviews = (callback) => {
 
 const getRestaurantName = (id, callback) => {
   //get the restrant by restaurant id
-  let queryString = `SELECT name FROM restaurants WHERE id=${id}`;
+  let queryString = `SELECT name FROM restaurants WHERE restaurant_id=${id}`;
   db.query(queryString, (err, result) => {
     if (err) {
       console.log('error getting restaurant name from database', err)
     } else {
-      // console.log(result);
       callback(null, result);
     }
   })
@@ -29,29 +30,29 @@ const getRestaurantName = (id, callback) => {
 
 const getReviewsByRestaurant = (id, callback) => {
   // get All the reviews by a resturant id
-  let queryString = `SELECT * FROM reviews INNER JOIN restaurants ON reviews.restaurant_id = restaurants.id WHERE reviews.restaurant_id = ${id} ORDER BY date DESC`
+  let queryString = `SELECT * FROM reviews INNER JOIN users ON users.user_id = reviews.user_id WHERE reviews.restaurant_id = ${id} ORDER BY updatedat DESC`
   db.query(queryString, (err, results) => {
     if (err) {
       console.log('error getting reviews by restaurant from database', err)
     } else {
-      // console.log(results);
       callback(null, results);
     }
   });
 }
 
-
 const insertReview = (review, callback) => {
-  let queryString = `INSERT INTO reviews(rating, comment, date, username, usercity, avatar, restaurant_id) 
-  VALUES(${review.rating}, '${review.comment}', STR_TO_DATE("${review.date}", "%m/%d/%Y"), '${review.username}', '${review.usercity}', '${review.avatar}', '${review.restaurant_id}')`;
+  let review_id = count;
+  count++;
+  console.log((review.createdAt).green);
+  let queryString = `INSERT INTO reviews(review_id, rating, comment, createdat, updatedat, user_id, restaurant_id)  VALUES(${review_id}, ${review.rating}, '${review.comment}', '${review.createdAt}', '${review.updatedAt}', ${review.user_id}, ${review.restaurant_id})`;
   db.query(queryString, (err, results) => {
     if (err) {
       console.log('error inserting review', err)
     } else {
-      // console.log(results);
       callback(null, results);
     }
   })
 }
 
 module.exports = { getRecentReviews, getRestaurantName, getReviewsByRestaurant, insertReview };
+

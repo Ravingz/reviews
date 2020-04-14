@@ -74,7 +74,7 @@ class SetRating extends React.Component {
     // this.getReviews();
     this.getRestaurant(this.props.restaurant);
   }
-
+  
   getRestaurant(id) {
     $.ajax({
       method: 'GET',

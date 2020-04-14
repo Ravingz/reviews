@@ -39,10 +39,10 @@ const ReviewDiv = styled.div`
 `;
 
 const ReviewEntry = (props) => {
-
-  let dateStrings = props.review.date.slice(0,10).split('-');
+  console.log(props.review);
+  let dateStrings = props.review.updatedat.slice(0,10).split('-');
   let postDate = `${dateStrings[1]}/${dateStrings[2]}/${dateStrings[0]}`;
-
+ 
   let rating = stars1;
   if (props.review.rating === 5 ) {
     rating = stars5;
@@ -55,6 +55,7 @@ const ReviewEntry = (props) => {
   }
 
   return (
+
     <ReviewContainer className="column review">
       <User review={props.review}/>
       <ReviewDiv className="list">
