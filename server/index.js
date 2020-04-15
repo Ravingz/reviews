@@ -36,7 +36,7 @@ app.get('/api/restaurants/:id', (req, res) => {
   
 });
 
-app.get('/api/restaurants/:id/reviews', (req, res) => {
+app.get('http://54.215.252.197:5432/api/restaurants/:id/reviews', (req, res) => {
   console.log('handeling get request for reviews by restaurant', req.params)
   db.getReviewsByRestaurant(req.params.id, (err, reviews) => {
     if (err) {
