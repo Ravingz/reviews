@@ -41,9 +41,10 @@ class App extends React.Component {
   // }
 
   getReviewsByRestaurant(id) {
+    console.log('hello from get request')
     $.ajax({
       method: 'GET',
-      url: `http://54.215.252.197:5432/api/restaurants/${id}/reviews`,
+      url: `/api/restaurants/${id}/reviews`,
       success: (content) => {this.setState({reviews: content})},
       error: (err) => (console.log('error from get request: ', err))
     })
